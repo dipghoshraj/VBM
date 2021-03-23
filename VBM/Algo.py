@@ -1,17 +1,30 @@
-# BMI_data = [
-#     {"Gender": "Male", "HeightCm": 171, "WeightKg": 96 }, 
-#     {"Gender": "Male", "HeightCm": 161, "WeightKg": 85 }, 
-#     {"Gender": "Male", "HeightCm": 180, "WeightKg": 77 }, 
-#     {"Gender": "Female", "HeightCm": 166, "WeightKg": 62}, 
-#     {"Gender": "Female", "HeightCm": 150, "WeightKg": 70}, 
-#     {"Gender": "Female", "HeightCm": 167, "WeightKg": 82},
-# ]
+
+from .scale import get_weight_scale
 
 def calculate_bmi(weight, height):
     height = chnage_height(height)
-    bmi = weight/height
-    return bmi
+    _bmi = weight/height
+    _weight_index = get_scale(_bmi)
+    return {
+        "bmi": _bmi,
+        "weight": _weight_index
+    }
 
 def chnage_height(height):
     height = height/100
     return height
+    
+def get_scale(_bmi):
+
+    if _bmi < 18.4:
+        return get_weight_scale(1)
+    if 18.4 <= _bmi <= 24.9:
+        return get_weight_scale(2)
+    if 25 <= _bmi <= 29.9:
+        return get_weight_scale(3)
+    if 30 <= _bmi <= 34.9:
+        return get_weight_scale(4)
+    if 35 <= _bmi <= 39.9:
+        return get_weight_scale(5)
+    if _bmi => 40:
+        return get_weight_scale(6)

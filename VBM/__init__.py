@@ -1,4 +1,4 @@
-def calculate_bmi(weight, height):
-    bmi = weight/height
-    return bmi
+from .Algo import *
 
+def get_bmi(weight, height):
+    return calculate_bmi(weight, height)
