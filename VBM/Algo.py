@@ -4,10 +4,12 @@ from .scale import get_weight_scale
 def calculate_bmi(weight, height):
     height = chnage_height(height)
     _bmi = weight/height
+    formatted_bmi = "{:.2f}".format(_bmi)
+
     _weight_index = get_scale(_bmi)
     return {
-        "bmi": _bmi,
-        "weight": _weight_index
+        "bmi": float(formatted_bmi),
+        "result": _weight_index
     }
 
 def chnage_height(height):
@@ -26,5 +28,5 @@ def get_scale(_bmi):
         return get_weight_scale(4)
     if 35 <= _bmi <= 39.9:
         return get_weight_scale(5)
-    if _bmi => 40:
+    if _bmi >= 40:
         return get_weight_scale(6)
